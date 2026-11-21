@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 if (current_user()) redirect('dashboard.php');
 $err = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
