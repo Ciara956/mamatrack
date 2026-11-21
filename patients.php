@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 $u = require_login();
 $q = trim($_GET['q'] ?? ''); $risk = $_GET['risk'] ?? ''; $mineOnly = isset($_GET['mine']);
 $sql = "SELECT p.*, d.name AS doctor_name,
