@@ -1,5 +1,4 @@
 <?php
-/** Convert 07xx / 7xx / 256... into +256 E.164 format. Returns '' if it doesn't look like a phone number. */
 function normalize_phone(?string $p): string {
     $d = preg_replace('/\D+/', '', (string)$p);
     if ($d === '') return '';
