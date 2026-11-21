@@ -1,6 +1,6 @@
 <?php
 /** Rescheduling for both staff (login, ?id=) and mothers (secure SMS link, ?t=token). */
-require __DIR__ . 'bootstrap.php';
+require __DIR__ . '/bootstrap.php';
 $token = (string)($_GET['t'] ?? $_POST['t'] ?? '');
 $staff = $token === '';
 $u = $staff ? require_login() : null;
