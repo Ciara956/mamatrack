@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . 'bootstrap.php';
+require __DIR__ . '/bootstrap.php';
 $u = require_login();
 $p = get_patient((int)($_GET['patient_id'] ?? $_POST['patient_id'] ?? 0));
 if (!$p) { http_response_code(404); exit('Mother not found'); }
