@@ -6,16 +6,18 @@
 date_default_timezone_set('Africa/Kampala');
 
 // 1. Database Connection
-function db() {
+ function db() {
     static $pdo = null;
     if ($pdo === null) {
-        $host = '127.0.0.1';
-        $db   = 'mamatrack';
-        $user = 'root';
-        $pass = ''; // Change if your XAMPP MySQL has a password
+        // Check Railway's MYSQL* names first, then DB_* names, then XAMPP defaults
+        $host = getenv('MYSQLHOST')     ?: getenv('DB_HOST')     ?: '127.0.0.1';
+        $port = getenv('MYSQLPORT')     ?: getenv('DB_PORT')     ?: '3306';
+        $db   = getenv('MYSQLDATABASE') ?: getenv('DB_NAME')     ?: 'mamatrack';
+        $user = getenv('MYSQLUSER')     ?: getenv('DB_USER')     ?: 'root';
+        $pass = getenv('MYSQLPASSWORD') ?: getenv('DB_PASSWORD') ?: '';
         $charset = 'utf8mb4';
-        
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+        $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -29,7 +31,6 @@ function db() {
     }
     return $pdo;
 }
-
 // 2. Session & Configuration
 if (session_status() === PHP_SESSION_NONE) session_start();
 
