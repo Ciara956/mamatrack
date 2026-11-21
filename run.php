@@ -7,7 +7,7 @@
  * 2) sends next-day reminders  3) takes a daily database backup (keeps the last 14)
  */
 if (PHP_SAPI !== 'cli') { http_response_code(403); exit('CLI only'); }
-require __DIR__ . '/../includes/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 $m = process_missed_appointments();
 $r = send_reminders();
 $dir = cfg('backup_dir');
