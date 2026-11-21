@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 $u = require_role('admin');
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
