@@ -1,17 +1,21 @@
-<?php
-// 1. Turn on error reporting (MUST be at the very top)
-ini_set('display_errors', 1);
+   <?php
+   ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // 2. Set timezone
 date_default_timezone_set('Africa/Kampala');
 
-// 3. Start session (if your app uses it)
+// Start session safely
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Force session cookie to work securely on Railway (HTTPS)
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    ini_set('session.cookie_secure', 1);
+}
+ini_set('session.cookie_samesite', 'Lax');
 // 4. Database Connection
 function db() {
     static $pdo = null;
