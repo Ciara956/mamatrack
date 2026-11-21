@@ -4,9 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // ... all the rest of your existing bootstrap.php code stays below ...
- * MamaTrack Core Bootstrap File
- * Connects to MySQL, handles sessions, security, and business logic.
- */
+ 
 date_default_timezone_set('Africa/Kampala');
 
 // 1. Database Connection
