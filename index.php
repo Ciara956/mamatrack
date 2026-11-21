@@ -1,1 +1,1 @@
-<?php require __DIR__ . '/includes/bootstrap.php'; redirect(current_user() ? 'dashboard.php' : 'login.php');
+<?php require __DIR__ . 'bootstrap.php'; redirect(current_user() ? 'dashboard.php' : 'login.php');
