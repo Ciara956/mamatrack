@@ -14,7 +14,7 @@ function status_badge(string $s): string { return '<span class="badge s-' . h($s
 function page_header(string $title, string $active = ''): void {
     $u = current_user(); ?>
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title><?= h($title) ?> · <?= h(cfg('app_name')) ?></title><link rel="stylesheet" href="assets/style.css"></head><body>
+<title><?= h($title) ?> · <?= h(cfg('app_name')) ?></title><link rel="stylesheet" href="style.css"></head><body>
 <?php if ($u): ?>
 <aside class="side"><div class="brand"> <?= h(cfg('app_name')) ?></div>
 <nav><?php foreach (nav_items($u['role']) as [$file, $label, $key]): ?><a href="<?= $file ?>" class="<?= $active === $key ? 'on' : '' ?>"><?= $label ?></a><?php endforeach; ?></nav>
