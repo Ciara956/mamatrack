@@ -1,14 +1,19 @@
 <?php
+// 1. Turn on error reporting (MUST be at the very top)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// ... all the rest of your existing bootstrap.php code stays below ...
- 
+// 2. Set timezone
 date_default_timezone_set('Africa/Kampala');
 
-// 1. Database Connection
- function db() {
+// 3. Start session (if your app uses it)
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// 4. Database Connection
+function db() {
     static $pdo = null;
     if ($pdo === null) {
         // Check Railway's MYSQL* names first, then DB_* names, then XAMPP defaults
@@ -33,6 +38,7 @@ date_default_timezone_set('Africa/Kampala');
     }
     return $pdo;
 }
+
 // 2. Session & Configuration
 if (session_status() === PHP_SESSION_NONE) session_start();
 
