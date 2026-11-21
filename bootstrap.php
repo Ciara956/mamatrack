@@ -1,15 +1,19 @@
-   <?php
-   ini_set('display_errors', 1);
+<?php
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// 2. Set timezone
 date_default_timezone_set('Africa/Kampala');
 
-// Start session safely
+// 1. Set session settings BEFORE starting the session
+ini_set('session.cookie_secure', 1);
+ini_set('session.cookie_samesite', 'Lax');
+
+// 2. Start session AFTER settings
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 
 // Force session cookie to work securely on Railway (HTTPS)
 if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
