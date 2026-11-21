@@ -1,7 +1,7 @@
 <?php
 /** Optional demo data:  php seed_demo.php   (CLI only). Creates sample staff, mothers, visits and appointments. */
 if (PHP_SAPI !== 'cli') { http_response_code(403); exit('CLI only'); }
-require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 $pdo = db();
 if ((int)$pdo->query('SELECT COUNT(*) FROM patients')->fetchColumn() > 0) exit("Patients already exist — demo seed skipped.\n");
 $pw = password_hash('Demo@1234', PASSWORD_DEFAULT);
