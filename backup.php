@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 require_role('admin');
 
 // MySQL Backup using mysqldump
