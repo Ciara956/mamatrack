@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . 'bootstrap.php';
+require __DIR__ . '/bootstrap.php';
 $u = require_login();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_check();
