@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 $u = require_login();
 $id = (int)($_GET['id'] ?? 0);
 $p = $id ? get_patient($id) : null;
