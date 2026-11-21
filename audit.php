@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/includes/bootstrap.php';
+require __DIR__ . 'bootstrap.php';
 require_role('admin');
 $rows = db()->query('SELECT * FROM audit_log ORDER BY id DESC LIMIT 300')->fetchAll();
 page_header('Audit trail', 'audit'); ?>
