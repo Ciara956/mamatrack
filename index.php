@@ -4,4 +4,3 @@
    error_reporting(E_ALL);
    
    // ... the rest of your code ...
-?>
