@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . 'bootstrap.php';
+require __DIR__ . '/bootstrap.php';
 $u = require_login();
 maybe_run_checks();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
