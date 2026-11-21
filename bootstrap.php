@@ -283,7 +283,7 @@ function page_header($title, $active = '') {
        body { 
         background: #f5f5f5; /* Fallback color */
         /* Replace 'assets/background.png' with the actual name of your image file */
-        background-image: url('assets/background.jpeg'); 
+        background-image: url('/background.jpeg'); 
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
