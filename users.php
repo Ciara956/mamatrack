@@ -38,7 +38,7 @@ page_header('Staff users', 'users'); ?>
 <form method="post" class="card form"><?= csrf_field() ?><input type="hidden" name="do" value="create"><h2>Add staff member</h2>
   <div class="cols"><label>Full name<input name="name" required></label><label>Email<input type="email" name="email" required></label>
   <label>Phone (for SMS alerts)<input name="phone"></label>
-  <label>Role<select name="role"><option value="doctor">Doctor (receives alerts)</option><option value="nurse">Nurse / midwife</option><option value="admin">Administrator</option></select></label>
+  <label>Role<select name="role"><option value="doctor">Doctor </option><option value="nurse">Nurse / midwife</option><option value="admin">Administrator</option></select></label>
   <label>Temporary password<input name="password" minlength="8" required></label></div>
   <button class="btn">Create user</button></form>
 <hr class="sp"><div class="card"><h2>Data backup</h2><p class="muted">Download a complete, consistent copy of the database (protects against loss of records). Also done automatically by <code>cron/run.php</code>.</p>
