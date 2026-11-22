@@ -224,6 +224,8 @@ function notify_person($appt_id, $recipient, $phone, $email, $subject, $message)
     $status = cfg('notify')['mode'] === 'live' ? 'sent' : 'queued_test';
     db()->prepare('INSERT INTO notifications(appointment_id,recipient,channel,to_addr,message,status,created_at) VALUES(?,?,?,?,?,?,?)')
         ->execute([$appt_id, $recipient, $channel, $phone, $message, $status, now()]);
+    
+
 }
 
 function process_missed_appointments() {
@@ -239,8 +241,11 @@ function process_missed_appointments() {
         // 2. Notify the PATIENT
         notify_person($a['id'], 'patient:'.$p['name'], $p['phone'], null, 'Missed Visit', 
             "Dear {$p['name']}, you missed your ANC visit on ".fdate($a['appt_date']).". Please contact us to reschedule.");
+        notify_person($a['id'], 'patient:'.$p['name'], $p['phone'], null, 'Missed Visit', 
+    "Nnyabo {$p['name']}, olusuku lwo lw'okwekebejja olwa ".fdate($a['appt_date'])." telwatuddeko. Osaba okutuukirira eddwaliro lya MamaTrack.");
+    
             
-        // 3. Notify the DOCTOR (New Feature!)
+        // 3. Notify the DOCTOR 
         $docStmt = db()->prepare('SELECT name, phone FROM users WHERE id=?'); 
         $docStmt->execute([$a['doctor_id']]);
         $doc = $docStmt->fetch();
@@ -248,6 +253,9 @@ function process_missed_appointments() {
         if ($doc && $doc['phone']) {
             notify_person($a['id'], 'doctor:'.$doc['name'], $doc['phone'], null, 'Patient Missed Visit', 
                 "ALERT Dr. {$doc['name']}: Patient {$p['name']} ({$p['mrn']}) missed her scheduled ANC visit on ".fdate($a['appt_date']).".");
+            notify_person($a['id'], 'doctor:'.$doc['name'], $doc['phone'], null, 'Patient Missed Visit', 
+    "Okulabula Dr. {$doc['name']}: Omulwadde {$p['name']} ({$p['mrn']}) teyazzeeko ku lusuku lwa ".fdate($a['appt_date']).".");
+
         }
         
         $count++;
@@ -263,6 +271,8 @@ function send_reminders() {
         notify_person($a['id'], 'patient:'.$p['name'], $p['phone'], null, 'Reminder', "Reminder: ANC visit tomorrow at {$a['appt_time']}.");
         db()->prepare("UPDATE appointments SET reminder_sent=1 WHERE id=?")->execute([$a['id']]);
         $count++;
+        notify_person($a['id'], 'patient:'.$p['name'], $p['phone'], null, 'Reminder', 
+    "Okujjukiza: Olusuku lwo lw'okwekebejja lwa ".fdate($a['appt_date'])." ku {$a['appt_time']}.");
     }
     return $count;
 }
