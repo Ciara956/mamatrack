@@ -11,7 +11,7 @@ header('Expires: 0');
 $pdo = db();
 
 echo "-- MamaTrack Database Backup\n";
-echo "-- Generated: " . now() . "\n\n";
+echo "-- Generated: " . date('Y-m-d H:i:s') . "\n\n";
 echo "SET FOREIGN_KEY_CHECKS=0;\n\n";
 
 // Get all tables in the database
