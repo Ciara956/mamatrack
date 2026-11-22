@@ -1,25 +1,22 @@
 <?php
+// 1. ERROR REPORTING
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// 2. TIMEZONE
 date_default_timezone_set('Africa/Kampala');
 
-// 1. Set session settings BEFORE starting the session
+// 3. SESSION SETTINGS (MUST BE BEFORE session_start)
 ini_set('session.cookie_secure', 1);
 ini_set('session.cookie_samesite', 'Lax');
 
-// 2. Start session AFTER settings
+// 4. START SESSION (MUST BE AFTER ini_set)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 
-// Force session cookie to work securely on Railway (HTTPS)
-if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-    ini_set('session.cookie_secure', 1);
-}
-ini_set('session.cookie_samesite', 'Lax');
 // 4. Database Connection
 function db() {
     static $pdo = null;
