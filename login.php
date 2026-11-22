@@ -14,6 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['uid'] = (int)$u['id']; $_SESSION['last'] = time();
         db()->prepare('UPDATE users SET failed_logins=0, locked_until=NULL WHERE id=?')->execute([$u['id']]);
         audit('login', $u['email']);
+        audit('login', $u['email']);
+
+// Automatically check for missed appointments if Admin or Doctor logs in
+if (in_array($u['role'], ['admin', 'doctor'])) {
+    process_missed_appointments();
+    send_reminders();
+}
+
+redirect('dashboard.php');
         redirect('dashboard.php');
     } else {
         if ($u) {
