@@ -609,7 +609,7 @@ function page_header($title, $active = '') {
         .tabs a.on { border-right-color: #14b8a6; border-bottom: none; }
     }
 </style>
-    </head><body>
+    </head><body class="<?= $u ? 'logged-in' : 'public-page' ?>">
     <?php if ($u): ?>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
