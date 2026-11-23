@@ -21,8 +21,9 @@ page_header('Appointments', 'appts'); ?>
  <td><a href="patient.php?id=<?= $a['patient_id'] ?>"><?= h($a['name']) ?></a><br><small><?= h(normalize_phone($a['phone'])) ?></small></td>
  <td><?= h($a['doctor']) ?></td><td><?= h($a['reason']) ?></td><td><?= status_badge($a['status']) ?></td>
  <td class="nowrap"><?php if (in_array($a['status'], ['scheduled', 'missed'], true)): ?>
-   <a class="btn sm" href="reschedule.php?id=<?= $a['id'] ?>">Reschedule</a>
-   <form method="post" class="inline" onsubmit="return confirm('Cancel this appointment?')"><?= csrf_field() ?><input type="hidden" name="do" value="cancel"><input type="hidden" name="id" value="<?= $a['id'] ?>"><button class="btn sm ghost">Cancel</button></form>
+   <a class="btn sm" href="reschedule.php?id=<?= $a['id'] ?>">Staff Reschedule</a>
+   <a class="btn sm ghost" href="reschedule.php?t=<?= h($a['token']) ?>" target="_blank">📱 Mother SMS Link</a>
+     <form method="post" class="inline" onsubmit="return confirm('Cancel this appointment?')"><?= csrf_field() ?><input type="hidden" name="do" value="cancel"><input type="hidden" name="id" value="<?= $a['id'] ?>"><button class="btn sm ghost">Cancel</button></form>
  <?php endif; ?></td></tr>
 <?php endforeach; if (!$rows): ?><tr><td colspan="6" class="muted">Nothing here.</td></tr><?php endif; ?></table></div></div>
 <?php page_footer();
