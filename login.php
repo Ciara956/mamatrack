@@ -37,8 +37,7 @@ redirect('dashboard.php');
     page_header('Sign in'); ?>
 <div class="logo-center"> MamaTrack ANC </div>
 <div class="card narrow">
-<p class="muted" style="text-align: center; margin-bottom: 20px;">Web-based maternal health record, trend-based risk assessment and missed-appointment system.</p>
- <?php if ($err): ?><div class="flash err"><?= h($err) ?></div><?php endif; ?>
+<?php if ($err): ?><div class="flash err"><?= h($err) ?></div><?php endif; ?>
   <form method="post"><?= csrf_field() ?>
     <label>Email<input type="email" name="email" required autofocus></label>
     <label>Password<input type="password" name="password" required></label>
