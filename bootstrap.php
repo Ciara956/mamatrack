@@ -592,6 +592,39 @@ function page_header($title, $active = '') {
         border-radius: 8px; 
         min-height: 200px; 
     }
+        /* CENTERED LAYOUT FOR LOGIN & PUBLIC PAGES  */
+body.public-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+body.public-page .card.narrow,
+body.public-page .card.form.narrow {
+    width: 100%;
+    max-width: 420px;
+    margin: 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+}
+
+body.public-page .flash {
+    width: 100%;
+    max-width: 420px;
+    margin-bottom: 15px;
+}
+
+/* Make the MamaTrack logo look nice centered */
+body.public-page .logo-center {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0d4f4f;
+}
     
     /* MOBILE RESPONSIVE DESIGN (Max 768px)      */
     @media (max-width: 768px) {
