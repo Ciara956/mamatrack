@@ -153,8 +153,9 @@ function patient_visits($id) {
 }
 
 function missed_count($id) {
-    return (int)db()->prepare('SELECT COUNT(*) FROM appointments WHERE patient_id=? AND status="missed"')->execute([$id]) ? 
-           db()->query("SELECT COUNT(*) FROM appointments WHERE patient_id=$id AND status='missed'")->fetchColumn() : 0;
+    $stmt = db()->prepare('SELECT COUNT(*) FROM appointments WHERE patient_id=? AND status="missed"');
+    $stmt->execute([$id]);
+    return (int)$stmt->fetchColumn();
 }
 
 function doctors() {
